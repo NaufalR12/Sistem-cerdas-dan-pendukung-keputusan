@@ -1,0 +1,103 @@
+function [Max_PT_awang] = ahp()
+disp('Matriks Perbandingan Berpasangan pada Kriteria');
+    MPBk = [ 1/1 3/1 2/1 2/1;
+             1/3 1/1 1/3 1/2;
+             1/2 3/1 1/1 1/1;
+             1/2 2/1 1/1 1/1 ]
+         
+         %normalisasi
+         w_MPB = calc_norm(MPBk)
+         [m n] = size(w_MPB);
+           for i=1 : m,
+               sumRow = 0;
+               for j=1 :n,
+                   sumRow = sumRow + w_MPB(i,j);
+               end;
+              V(i) = (sumRow);
+           end;
+             disp('Eigenvector')
+           w_MPB = transpose(V)/m
+           
+  %%Membandingkan Kuantitas
+  disp('Perbandingan Kuantitas: Alternatif Kualitatif Berpasangan');
+   anindita = 90;
+   mbalis = 80;
+   lembayung = 75;
+   rizky = 85;
+   
+   ACM_K =[ anindita;
+            mbalis;
+            lembayung;
+            rizky]
+   w_K = calc_norm(ACM_K)
+   
+   %%Membandingkan Kedisiplinan Pembayaran
+   disp('Perbandingan Kedisiplinan Pembayaran: Alternatif Kualitatif Berpasangan');
+    AKB_KP = [ 1/1 2/1 3/1 4/1;
+               1/2 1/1 2/1 3/1;
+               1/3 1/2 1/1 2/1;
+               1/4 1/3 1/2 1/1 ]
+     w_KP = calc_norm(AKB_KP)
+         [m n] = size(w_KP);
+           for i=1 : m,
+               sumRow = 0;
+               for j=1 :n,
+                   sumRow = sumRow + w_KP(i,j);
+               end;
+              V(i) = (sumRow);
+           end;
+             disp('Eigenvector')
+           w_KP = transpose(V)/m
+           
+    %%Membandingkan Keberlanjutan Pesanan /Repeat Order
+    disp('Perbandingan Keberlanjutan Pesanan /Repeat Order: Alternatif Kualitatif Berpasangan');
+     AKB_PP = [ 1/1 2/1 1/2 1/3;
+                1/2 1/1 1/3 1/4;
+                2/1 3/1 1/1 1/2;
+                3/1 4/1 2/1 1/1 ]
+      w_PP = calc_norm(AKB_PP)
+         [m n] = size(w_PP);
+           for i=1 : m,
+               sumRow = 0;
+               for j=1 :n,
+                   sumRow = sumRow + w_PP(i,j);
+               end;
+              V(i) = (sumRow);
+           end;
+             disp('Eigenvector')
+           w_PP = transpose(V)/m
+           
+      %%Membandingkan Jarak
+      disp('Perbandingan Jarak: Alternatif Kualitatif Berpasangan');
+       AKB_J = [ 1/1 2/1 3/1 1/2;
+                 1/2 1/1 2/1 1/3;
+                 1/3 1/2 1/1 1/4;
+                 2/1 3/1 4/1 1/1 ]
+        w_J = calc_norm(AKB_J)
+         [m n] = size(w_J);
+           for i=1 : m,
+               sumRow = 0;
+               for j=1 :n,
+                   sumRow = sumRow + w_J(i,j);
+               end;
+              V(i) = (sumRow);
+           end;
+             disp('Eigenvector')
+           w_J = transpose(V)/m
+           
+       %%Hitung Jawaban Terakhir
+       wM = [w_K w_KP w_PP w_J];
+       disp('Nilai Akhir Untuk : PT A, PT B, PT C, PT D');
+       MC_Scores = wM * w_MPB
+       
+       %%PT Terbaik
+       disp('Nilai PT Terbaik terpilih berdasarkan manfaat (kriteria)');
+       Max_MC_Benefits = max(MC_Scores)
+    function  [normvect] = calc_norm(M)
+        sM = sum(M);
+        normvect = M./sM;
+        disp('Normalisasi Matriks');
+    end
+end
+     
+

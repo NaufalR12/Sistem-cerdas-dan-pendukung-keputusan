@@ -1,0 +1,47 @@
+[System]
+Name='Latihankuis2'
+Type='mamdani'
+Version=2.0
+NumInputs=2
+NumOutputs=1
+NumRules=9
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='PB'
+Range=[0 20]
+NumMFs=3
+MF1='Rendah':'trimf',[0 0 5]
+MF2='Sedang':'trimf',[2.5 10 17.5]
+MF3='Tinggi':'trimf',[15 20 20]
+
+[Input2]
+Name='KT'
+Range=[0 100]
+NumMFs=3
+MF1='Sedikit':'trimf',[0 0 30]
+MF2='Cukup':'trapmf',[20 30 70 80]
+MF3='Banyak':'trimf',[70 100 100]
+
+[Output1]
+Name='KF'
+Range=[0 100]
+NumMFs=3
+MF1='Buruk':'gaussmf',[10 0]
+MF2='Ideal':'gaussmf',[10 50]
+MF3='Baik':'gaussmf',[10 100]
+
+[Rules]
+1 1, 1 (1) : 1
+1 2, 1 (1) : 1
+1 3, 2 (1) : 1
+2 1, 1 (1) : 1
+2 2, 2 (1) : 1
+2 3, 3 (1) : 1
+3 1, 2 (1) : 1
+3 2, 3 (1) : 1
+3 3, 3 (1) : 1

@@ -1,0 +1,47 @@
+[System]
+Name='DeaReigina_Tugas2(REVISI)'
+Type='mamdani'
+Version=2.0
+NumInputs=2
+NumOutputs=1
+NumRules=9
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='tegangan'
+Range=[25 150]
+NumMFs=3
+MF1='rendah':'trapmf',[0 0 45 90]
+MF2='normal':'trimf',[45 90 130]
+MF3='tinggi':'trapmf',[90 130 175 175]
+
+[Input2]
+Name='perlengkapan'
+Range=[0 8]
+NumMFs=3
+MF1='sedikit':'trapmf',[0 0 1 3]
+MF2='normal':'trimf',[3 4 5]
+MF3='banyak':'trapmf',[5 7 15 15]
+
+[Output1]
+Name='konsumsi'
+Range=[30 120]
+NumMFs=3
+MF1='rendah':'trapmf',[0 0 50 75]
+MF2='normal':'trimf',[50 75 100]
+MF3='tinggi':'trapmf',[75 100 150 150]
+
+[Rules]
+1 1, 1 (1) : 1
+1 2, 1 (1) : 1
+1 3, 1 (1) : 1
+2 1, 1 (1) : 1
+2 2, 2 (1) : 1
+2 3, 2 (1) : 1
+3 1, 2 (1) : 1
+3 2, 3 (1) : 1
+3 3, 3 (1) : 1
