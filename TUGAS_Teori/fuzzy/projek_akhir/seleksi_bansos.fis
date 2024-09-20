@@ -1,0 +1,73 @@
+[System]
+Name='seleksi_bansos'
+Type='mamdani'
+Version=2.0
+NumInputs=3
+NumOutputs=1
+NumRules=27
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='pendapatan'
+Range=[0 5000000]
+NumMFs=3
+MF1='rendah':'trapmf',[-555600 -208300 500000 2700000]
+MF2='sedang':'trimf',[2000000 3000000 4000000]
+MF3='tinggi':'trapmf',[3500000 4750000 5000000 5000000]
+
+[Input2]
+Name='jumlah_tanggungan'
+Range=[0 10]
+NumMFs=3
+MF1='sedikit':'trapmf',[0 0 0.5 2]
+MF2='sedang':'trimf',[1 3 5]
+MF3='banyak':'trapmf',[4 6 10 10]
+
+[Input3]
+Name='kondisi_rumah'
+Range=[0 10]
+NumMFs=3
+MF1='buruk':'trapmf',[-1.111 -0.4167 2 4.5]
+MF2='cukup':'trimf',[3 5 7]
+MF3='baik':'trapmf',[5.5 8 10.42 13.75]
+
+[Output1]
+Name='hasil'
+Range=[0 10]
+NumMFs=3
+MF1='Tidak_Diterima':'trapmf',[0 0 1.25 4.5]
+MF2='Dipertimbangkan':'trimf',[3 5.25 7.5]
+MF3='Diterima':'trapmf',[6.5 8.5 10 10]
+
+[Rules]
+1 3 1, 3 (1) : 1
+1 3 2, 3 (1) : 1
+1 3 3, 3 (1) : 1
+1 2 1, 3 (1) : 1
+1 2 2, 3 (1) : 1
+1 2 3, 2 (1) : 1
+1 1 1, 2 (1) : 1
+1 1 2, 1 (1) : 1
+1 1 3, 1 (1) : 1
+2 3 1, 3 (1) : 1
+2 3 2, 3 (1) : 1
+2 3 3, 2 (1) : 1
+2 2 1, 2 (1) : 1
+2 2 2, 1 (1) : 1
+2 2 3, 1 (1) : 1
+2 1 1, 2 (1) : 1
+2 1 2, 1 (1) : 1
+2 1 3, 1 (1) : 1
+3 3 1, 2 (1) : 1
+3 3 2, 1 (1) : 1
+3 3 3, 1 (1) : 1
+3 2 1, 2 (1) : 1
+3 2 2, 1 (1) : 1
+3 2 3, 1 (1) : 1
+3 1 1, 1 (1) : 1
+3 1 2, 1 (1) : 1
+3 1 3, 1 (1) : 1
